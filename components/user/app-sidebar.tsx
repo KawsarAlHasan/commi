@@ -33,13 +33,25 @@ const navItems = [
   { title: "Job Tracker", url: "#", icon: Crosshair },
 ] as const;
 
-const settingsNavItems: { id: SettingsTab; label: string; icon: JSX.Element }[] = [
+const settingsNavItems: {
+  id: SettingsTab;
+  label: string;
+  icon: JSX.Element;
+}[] = [
   {
     id: "account",
     label: "Account details",
     icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
+      <svg
+        className="w-5 h-5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
           d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"
         />
       </svg>
@@ -49,8 +61,16 @@ const settingsNavItems: { id: SettingsTab; label: string; icon: JSX.Element }[] 
     id: "feedback",
     label: "Give feedback",
     icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
+      <svg
+        className="w-5 h-5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
           d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
         />
       </svg>
@@ -60,8 +80,16 @@ const settingsNavItems: { id: SettingsTab; label: string; icon: JSX.Element }[] 
     id: "support",
     label: "Support",
     icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
+      <svg
+        className="w-5 h-5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
           d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
         />
       </svg>
@@ -133,7 +161,9 @@ function MobileNavBar() {
               >
                 <Icon className="h-5 w-5" strokeWidth={2.2} />
               </span>
-              <span className="text-[10px] font-medium leading-none">{item.title}</span>
+              <span className="text-[10px] font-medium leading-none">
+                {item.title}
+              </span>
             </Link>
           );
         })}
@@ -176,7 +206,14 @@ function MobileNavBar() {
         <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-[#50545e]" />
 
         <div className="mb-4 flex items-center justify-between">
-          <Image src={mainLogo2} alt="Commi" width={90} height={30} className="h-auto" priority />
+          <Image
+            src={mainLogo2}
+            alt="Commi"
+            width={90}
+            height={30}
+            className="h-auto"
+            priority
+          />
           <button
             type="button"
             onClick={() => setDrawerOpen(false)}
@@ -191,22 +228,33 @@ function MobileNavBar() {
           {email ? (
             <button
               type="button"
-              onClick={() => { router.push("/settings?tab=account"); setDrawerOpen(false); }}
+              onClick={() => {
+                router.push("/settings?tab=account");
+                setDrawerOpen(false);
+              }}
               className="flex w-full items-center gap-3"
             >
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#f59f84] to-[#8a5fe2] text-xs font-semibold text-white">
                 {userInitials}
               </span>
               <div className="flex flex-1 flex-col text-left">
-                <span className="text-sm font-semibold text-white">{displayName}</span>
+                <span className="text-sm font-semibold text-white">
+                  {displayName}
+                </span>
                 <span className="text-xs text-[#c4c7ce]">{email}</span>
               </div>
-              <ChevronDown className="h-4 w-4 text-[#d8d9de]" strokeWidth={2.2} />
+              <ChevronDown
+                className="h-4 w-4 text-[#d8d9de]"
+                strokeWidth={2.2}
+              />
             </button>
           ) : (
             <button
               type="button"
-              onClick={() => { router.push("/auth"); setDrawerOpen(false); }}
+              onClick={() => {
+                router.push("/auth");
+                setDrawerOpen(false);
+              }}
               className="flex w-full items-center gap-3"
             >
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#3a3d46] text-xs font-semibold text-white">
@@ -218,33 +266,46 @@ function MobileNavBar() {
         </div>
 
         {/* Settings navItems */}
-        <p className="mb-2 px-1 text-[11px] font-semibold uppercase tracking-widest text-[#50545e]">
-          Settings
-        </p>
-        <div className="space-y-1">
-          {settingsNavItems.map((item) => {
-            const isActive =
-              pathname === "/settings" &&
-              (typeof window !== "undefined"
-                ? new URLSearchParams(window.location.search).get("tab") === item.id
-                : false);
-            return (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => { router.push(`/settings?tab=${item.id}`); setDrawerOpen(false); }}
-                className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors text-left ${
-                  isActive
-                    ? "bg-[#3a3d46] text-white"
-                    : "text-[#c4c7ce] hover:bg-[#2f323b] hover:text-white"
-                }`}
-              >
-                <span className={isActive ? "text-white" : "text-[#9ca3af]"}>{item.icon}</span>
-                {item.label}
-              </button>
-            );
-          })}
-        </div>
+
+        {email && (
+          <>
+            <p className="mb-2 px-1 text-[11px] font-semibold uppercase tracking-widest text-[#50545e]">
+              Settings
+            </p>
+            <div className="space-y-1">
+              {settingsNavItems.map((item) => {
+                const isActive =
+                  pathname === "/settings" &&
+                  (typeof window !== "undefined"
+                    ? new URLSearchParams(window.location.search).get("tab") ===
+                      item.id
+                    : false);
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => {
+                      router.push(`/settings?tab=${item.id}`);
+                      setDrawerOpen(false);
+                    }}
+                    className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors text-left ${
+                      isActive
+                        ? "bg-[#3a3d46] text-white"
+                        : "text-[#c4c7ce] hover:bg-[#2f323b] hover:text-white"
+                    }`}
+                  >
+                    <span
+                      className={isActive ? "text-white" : "text-[#9ca3af]"}
+                    >
+                      {item.icon}
+                    </span>
+                    {item.label}
+                  </button>
+                );
+              })}
+            </div>
+          </>
+        )}
       </div>
     </>
   );
@@ -295,7 +356,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 const isActive = pathname === item.url;
                 const Icon = item.icon;
                 return (
-                  <SidebarMenuItem key={item.title} className="relative overflow-visible">
+                  <SidebarMenuItem
+                    key={item.title}
+                    className="relative overflow-visible"
+                  >
                     <Link
                       href={item.url}
                       className={`flex items-center gap-3 rounded-md px-4 py-3 text-base leading-none transition-colors ${
@@ -303,7 +367,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                           ? "bg-[#2f323b] text-white"
                           : "text-[#f3f4f6] hover:bg-[#2f323b]"
                       }`}
-                      style={{ fontFamily: "var(--font-geist-sans), sans-serif" }}
+                      style={{
+                        fontFamily: "var(--font-geist-sans), sans-serif",
+                      }}
                     >
                       <Icon className="h-5 w-5 shrink-0" strokeWidth={2.2} />
                       <span className="font-medium">{item.title}</span>
@@ -326,10 +392,17 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     {userInitials}
                   </p>
                   <div className="flex flex-1 flex-col min-w-0">
-                    <span className="text-sm font-semibold leading-tight truncate">{displayName}</span>
-                    <span className="text-xs leading-tight text-[#c4c7ce]">Settings</span>
+                    <span className="text-sm font-semibold leading-tight truncate">
+                      {displayName}
+                    </span>
+                    <span className="text-xs leading-tight text-[#c4c7ce]">
+                      Settings
+                    </span>
                   </div>
-                  <ChevronDown className="h-4 w-4 text-[#d8d9de] shrink-0" strokeWidth={2.2} />
+                  <ChevronDown
+                    className="h-4 w-4 text-[#d8d9de] shrink-0"
+                    strokeWidth={2.2}
+                  />
                 </div>
               </button>
             ) : (
@@ -338,7 +411,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 onClick={() => router.push("/auth")}
                 className="w-full rounded-lg border border-[#50545e] px-3 py-2 text-left transition-colors hover:bg-[#2f323b] cursor-pointer"
               >
-                <span className="text-sm font-semibold leading-tight">Login</span>
+                <span className="text-sm font-semibold leading-tight">
+                  Login
+                </span>
               </button>
             )}
           </SidebarFooter>
