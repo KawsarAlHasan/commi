@@ -25,11 +25,11 @@ function AccountDetails() {
           Your account email:{" "}
           <span className="text-blue-700 font-semibold">{accountEmail}</span>
         </p>
-        <div className="flex gap-3 mt-4 mb-8">
-          <button className="border border-orange-500 text-orange-500 hover:bg-orange-50 text-sm font-semibold px-4 py-2 rounded-full transition-colors">
+        <div className="lg:flex gap-3 mt-4 mb-8">
+          <button className="border border-orange-500 text-orange-500 hover:bg-orange-50 text-sm font-semibold px-4 py-2 rounded-full transition-colors w-full lg:w-auto mb-2 lg:mb-0">
             Change Email
           </button>
-          <button className="border border-orange-500 text-orange-500 hover:bg-orange-50 text-sm font-semibold px-4 py-2 rounded-full transition-colors">
+          <button className="border border-orange-500 text-orange-500 hover:bg-orange-50 text-sm font-semibold px-4 py-2 rounded-full transition-colors w-full lg:w-auto">
             Connect With Google
           </button>
         </div>

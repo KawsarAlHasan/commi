@@ -1,5 +1,7 @@
 "use client";
-import { JSX, useState } from "react";
+
+import { JSX, useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Support from "./_settingComponents/Support";
 import GiveFeedBack from "./_settingComponents/GiveFeedBack";
 import AccountDetails from "./_settingComponents/AccountDetails";
@@ -7,7 +9,30 @@ import AccountDetails from "./_settingComponents/AccountDetails";
 type Tab = "feedback" | "support" | "account";
 
 export default function SettingsPage() {
-  const [activeTab, setActiveTab] = useState<Tab>("account");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const tabFromUrl = searchParams.get("tab") as Tab | null;
+  const [activeTab, setActiveTab] = useState<Tab>(
+    tabFromUrl && ["feedback", "support", "account"].includes(tabFromUrl)
+      ? tabFromUrl
+      : "account"
+  );
+
+  useEffect(() => {
+    if (
+      tabFromUrl &&
+      ["feedback", "support", "account"].includes(tabFromUrl) &&
+      tabFromUrl !== activeTab
+    ) {
+      setActiveTab(tabFromUrl);
+    }
+  }, [tabFromUrl]);
+
+  const handleTabChange = (tab: Tab) => {
+    setActiveTab(tab);
+    router.replace(`/settings?tab=${tab}`, { scroll: false });
+  };
 
   const navItems: { id: Tab; label: string; icon: JSX.Element }[] = [
     {
@@ -72,12 +97,11 @@ export default function SettingsPage() {
   return (
     <div className="min-h-screen bg-gray-100 flex items-start justify-center py-10 px-4">
       <div className="flex gap-4 w-full">
-        {/* Sidebar */}
-        <div className="bg-white rounded-2xl shadow-sm p-3 w-52 flex-shrink-0 h-fit">
+        <div className="hidden md:block bg-white rounded-2xl shadow-sm p-3 w-52 flex-shrink-0 h-fit">
           {navItems.map((item) => (
             <button
               key={item.id}
-              onClick={() => setActiveTab(item.id)}
+              onClick={() => handleTabChange(item.id)}
               className={`cursor-pointer w-full flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium transition-colors text-left ${
                 activeTab === item.id
                   ? "bg-gray-100 text-blue-900 font-semibold"
@@ -96,15 +120,16 @@ export default function SettingsPage() {
           ))}
         </div>
 
-        {/* Main Content */}
-        <div className="flex-1">
-          {/* Account Details */}
+        <div className="flex-1 min-w-0">
+          <div className="mb-4 flex items-center gap-2 md:hidden">
+            <span className="text-sm font-semibold text-gray-700">
+              {navItems.find((n) => n.id === activeTab)?.label}
+            </span>
+          </div>
+
+          {/* Main Content */}
           {activeTab === "account" && <AccountDetails />}
-
-          {/* Give Feedback */}
           {activeTab === "feedback" && <GiveFeedBack />}
-
-          {/* Support */}
           {activeTab === "support" && <Support />}
         </div>
       </div>
