@@ -46,7 +46,7 @@ export default function VerifyOTP() {
     console.log("OTP:", finalOtp);
 
     if (role === "employer") {
-      router.push("/user");
+      router.push("/");
     } else if (role === "company") {
       router.push("/company");
     }

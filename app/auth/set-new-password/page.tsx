@@ -30,7 +30,7 @@ export default function SetNewPassword() {
 
     console.log("payload", payload);
 
-    router.push("/user");
+    router.push("/");
   };
 
   return (

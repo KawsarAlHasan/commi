@@ -28,7 +28,8 @@ export default function Login() {
     };
 
     Cookies.set("payload", JSON.stringify(payload));
-    router.push("/user");
+    Cookies.set("email", email);
+    router.push("/");
 
     console.log("payload", payload);
   };

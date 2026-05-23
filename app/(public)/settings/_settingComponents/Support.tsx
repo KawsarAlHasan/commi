@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 
 function Support() {
-  const supportEmail = "ovie@gmail.com";
+  const supportEmail = "support@commi.com";
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {

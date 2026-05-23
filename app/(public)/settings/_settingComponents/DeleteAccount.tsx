@@ -125,7 +125,7 @@ function DeleteAccount() {
               <h2 className="text-lg font-semibold text-gray-900 mb-5 leading-snug">
                 Please let us know why
                 <br />
-                you're deleting your account
+                you are deleting your account
               </h2>
 
               <input

@@ -31,8 +31,10 @@ export default function SignUp() {
       agreed,
     };
 
+    Cookies.set("email", email);
     Cookies.set("payload", JSON.stringify(payload));
     router.push("/auth/verify-otp");
+
 
     console.log("payload", payload);
   };

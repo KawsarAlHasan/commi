@@ -1,9 +1,11 @@
 "use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import mainLogo2 from "@/public/images/main-logo-2.png";
 import { BriefcaseBusiness, ChevronDown, Crosshair, User } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 import {
   Sidebar,
   SidebarContent,
@@ -13,6 +15,7 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import { useEffect, useState } from "react";
 
 const navItems = [
   {
@@ -33,9 +36,21 @@ const navItems = [
 ] as const;
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const pathname = usePathname();
+  const [email, setEmail] = useState<string | undefined>(undefined);
 
+  const pathname = usePathname();
   const router = useRouter();
+
+  useEffect(() => {
+    setEmail(Cookies.get("email"));
+  }, []);
+
+  const displayName = "Will Jacks";
+  const userInitials = displayName
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .toUpperCase();
 
   return (
     <Sidebar
@@ -87,30 +102,39 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarContent>
 
         <SidebarFooter className="mt-auto px-4 pb-4">
-          <button
-            type="button"
-            onClick={() => router.push("/settings")}
-            className="w-full rounded-lg border border-[#50545e] px-3 py-2 text-left transition-colors hover:bg-[#2f323b] cursor-pointer"
-          >
-            <span className="flex items-center gap-3">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[#f59f84] to-[#8a5fe2] text-xs font-semibold text-white">
-                MR
-              </span>
-              <span className="flex flex-1 flex-col">
-                <span className="text-sm font-semibold leading-tight">
-                  Moni Roy
-                </span>
-                <span className="text-xs leading-tight text-[#c4c7ce]">
-                  Settings
-                </span>
-              </span>
-
-              <ChevronDown
-                className="h-4 w-4 text-[#d8d9de]"
-                strokeWidth={2.2}
-              />
-            </span>
-          </button>
+          {email ? (
+            <button
+              type="button"
+              onClick={() => router.push("/settings")}
+              className="w-full rounded-lg border border-[#50545e] px-3 py-2 text-left transition-colors hover:bg-[#2f323b] cursor-pointer"
+            >
+              <div className="flex items-center gap-3">
+                <p className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[#f59f84] to-[#8a5fe2] text-xs font-semibold text-white">
+                  {userInitials}
+                </p>
+                <div className="flex flex-1 flex-col">
+                  <span className="text-sm font-semibold leading-tight">
+                    {displayName}
+                  </span>
+                  <span className="text-xs leading-tight text-[#c4c7ce]">
+                    Settings
+                  </span>
+                </div>
+                <ChevronDown
+                  className="h-4 w-4 text-[#d8d9de]"
+                  strokeWidth={2.2}
+                />
+              </div>
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={() => router.push("/auth")}
+              className="w-full rounded-lg border border-[#50545e] px-3 py-2 text-left transition-colors hover:bg-[#2f323b] cursor-pointer"
+            >
+              <span className="text-sm font-semibold leading-tight">Login</span>
+            </button>
+          )}
         </SidebarFooter>
       </div>
 

@@ -1,13 +1,21 @@
 "use client";
 import React, { useState } from "react";
 import DeleteAccount from "./DeleteAccount";
+import Coockies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 function AccountDetails() {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const accountEmail = Coockies.get("email");
+  const router = useRouter();
 
-  const accountEmail = "lucas@kokgespot.nl";
+  const handleLogout = () => {
+    Coockies.remove("email");
+    Coockies.remove("token");
+    router.push("/auth");
+  };
 
   return (
     <div>
@@ -71,6 +79,33 @@ function AccountDetails() {
       </div>
 
       <DeleteAccount />
+
+      <div className="bg-white rounded-2xl shadow-sm p-8 mt-4">
+        <h2 className="text-lg font-bold text-gray-900">Logout</h2>
+        <p className="text-sm text-gray-500 mt-1">
+          Logging out will end your current session.
+        </p>
+
+        <button
+          onClick={handleLogout}
+          className="cursor-pointer flex items-center gap-2 mt-6 bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors"
+        >
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={1.5}
+              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+            />
+          </svg>{" "}
+          Logout
+        </button>
+      </div>
     </div>
   );
 }
