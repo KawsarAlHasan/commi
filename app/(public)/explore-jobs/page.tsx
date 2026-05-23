@@ -114,7 +114,7 @@ function JobCard({ job }: { job: (typeof jobs)[0] }) {
   const router = useRouter();
   return (
     <div
-      onClick={() => router.push(`/user/explore-jobs/job-details`)}
+      onClick={() => router.push(`/explore-jobs/job-details`)}
       className="cursor-pointer bg-white rounded-xl border border-gray-200 p-4 flex flex-col gap-3"
     >
       <div className="flex items-center justify-between">

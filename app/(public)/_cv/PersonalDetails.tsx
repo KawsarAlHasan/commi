@@ -56,7 +56,7 @@ export default function PersonalDetails({ data, onChange }: Props) {
         <div className="flex justify-center mt-4 items-center">
           <div
             onClick={() => fileRef.current?.click()}
-            className="w-24 h-24 rounded-full border-2 border-dashed border-gray-300 flex flex-col items-center justify-center cursor-pointer hover:border-orange-400 hover:text-orange-400 text-gray-400 transition-colors overflow-hidden"
+            className="w-16 h-16 lg:w-24 lg:h-24 rounded-full border-2 border-dashed border-gray-300 flex flex-col items-center justify-center cursor-pointer hover:border-orange-400 hover:text-orange-400 text-gray-400 transition-colors overflow-hidden"
           >
             {data.photo ? (
               <img
