@@ -32,7 +32,7 @@ export default function AdminTable() {
     };
 
     return (
-        <div className="min-h-screen bg-[#fff0ec] p-8">
+        <div className="min-h-screen p-8">
             <div className="bg-white rounded-2xl shadow-sm p-6 w-full">
                 {/* Invite Button */}
                 <div className="mb-6">

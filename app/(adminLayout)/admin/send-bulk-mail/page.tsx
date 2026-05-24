@@ -46,7 +46,7 @@ export default function UserCompanyTabs() {
     };
 
     return (
-        <div className="min-h-screen bg-[#fff0ec] flex justify-center p-6">
+        <div className="min-h-screen flex justify-center p-6">
             <div className="bg-white rounded-2xl shadow-sm w-full p-6">
                 {/* Tab Buttons */}
                 <div className="flex gap-3 mb-6">

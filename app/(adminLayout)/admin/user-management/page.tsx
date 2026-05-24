@@ -163,7 +163,7 @@ export default function UserManagementTable() {
   const paginated = filtered.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
   return (
-    <div className="min-h-screen bg-[#fff0ec] flex justify-center p-6">
+    <div className="min-h-screen flex justify-center p-6">
       <div className="bg-white rounded-3xl shadow-sm w-full border border-orange-100 p-6 md:p-8">
 
         {/* Tabs */}

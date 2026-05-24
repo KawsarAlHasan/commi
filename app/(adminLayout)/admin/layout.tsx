@@ -51,7 +51,7 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
                         </button>
                     </div>
                 </header>
-                <main className="flex-1 w-full">
+                <main className="flex-1 w-full bg-[#fff0ec]">
                     {children}
                 </main>
             </SidebarInset>

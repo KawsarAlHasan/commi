@@ -97,7 +97,7 @@ export default function PaymentHistoryTable() {
   };
 
   return (
-    <div className="min-h-screen bg-[#fff0ec] flex items-center justify-center p-8">
+    <div className="min-h-screen flex items-center justify-center p-8">
       <div className="bg-white rounded-2xl shadow-sm w-full p-6 relative">
 
         {/* Sort Dropdown */}

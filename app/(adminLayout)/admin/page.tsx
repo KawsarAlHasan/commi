@@ -37,7 +37,7 @@ const statsData = [
 
 export default function AdminHomePage() {
     return (
-        <div className="min-h-screen bg-[#fff0ec] p-4 md:p-6">
+        <div className="min-h-screen p-4 md:p-6">
             {/* Greeting Section */}
             <div className="mb-4 rounded-2xl bg-[#FFFFFF] p-4 md:p-6">
                 <p className="mb-1 text-xs text-gray-600">Hi, 👋 Good Morning</p>

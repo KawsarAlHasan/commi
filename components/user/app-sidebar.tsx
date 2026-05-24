@@ -333,10 +333,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <Sidebar
         {...props}
         collapsible="offcanvas"
-        className="hidden border-r-0 bg-transparent p-3 md:flex"
+        className="hidden border-r-0 bg-transparent md:flex"
         style={{ backgroundColor: "transparent" }}
       >
-        <div className="flex h-full flex-col rounded-2xl border border-[#3a3d46] bg-[#25272d] text-[#f3f4f6]">
+        <div className="flex h-full flex-col border border-[#3a3d46] bg-[#25272d] text-[#f3f4f6]">
           <SidebarHeader className="px-6 py-8">
             <div className="flex flex-col items-center">
               <Image

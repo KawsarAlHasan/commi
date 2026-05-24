@@ -35,7 +35,7 @@ export default function EmployeeTable() {
     );
 
     return (
-        <div className="min-h-screen bg-[#fff0ec] w-full p-6">
+        <div className="w-full">
             <div className="bg-white rounded-2xl shadow-sm w-full p-6">
                 {/* Search Bar */}
                 <div className="flex gap-3 mb-6">

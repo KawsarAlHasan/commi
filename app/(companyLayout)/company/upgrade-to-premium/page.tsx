@@ -53,23 +53,23 @@ const plans = [
 
 export default function PricingSection() {
     return (
-        <section className="min-h-screen bg-[#fff0ec] flex flex-col items-center px-6 py-20">
+        <section className=" flex flex-col items-center py-8 lg:py-20">
             {/* Header */}
-            <div className="text-center mb-14">
-                <h1 className="text-5xl font-extrabold text-gray-900 mb-4">
+            <div className="text-center mb-5 lg:mb-14">
+                <h1 className="text-[24px] lg:text-4xl font-extrabold text-gray-900 mb-4">
                     Simple, transparent pricing
                 </h1>
-                <p className="text-gray-500 text-lg">
+                <p className="text-gray-500 lg:text-lg">
                     Start for free, upgrade when you need more power. No hidden fees.
                 </p>
             </div>
 
             {/* Cards */}
-            <div className="flex flex-col md:flex-row items-stretch justify-center gap-6 w-full max-w-5xl">
+            <div className="flex flex-col md:flex-row items-stretch justify-center gap-6 w-full max-w-6xl">
                 {plans.map((plan) => (
                     <div
                         key={plan.name}
-                        className={`relative flex flex-col rounded-3xl p-6 w-full max-w-xs min-h-120 h-full shadow-md ${plan.dark
+                        className={`relative flex flex-col rounded-3xl p-6 w-full max-w-md min-h-120 h-full shadow-md ${plan.dark
                             ? "bg-[#2b2b2b] text-white"
                             : "bg-white text-gray-900"
                             }`}
