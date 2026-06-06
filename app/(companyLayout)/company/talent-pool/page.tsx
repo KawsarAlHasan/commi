@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { ViewDetailsModal } from "./ViewDetailsModal";
 
 interface Employee {
     id: number;
@@ -71,16 +72,10 @@ export default function EmployeeTable() {
                                 <td className="py-4 pr-4 text-sm text-gray-500">{employee.address}</td>
                                 <td className="py-4 pr-4 text-sm text-gray-500">{employee.currentEmployee}</td>
                                 <td className="py-4 pr-4">
-                                    <button className="flex items-center gap-1.5 bg-green-50 hover:bg-green-100 text-green-600 text-xs font-medium px-3 py-1.5 rounded-full border border-green-100 transition-colors">
-                                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                        </svg>
-                                        View Details
-                                    </button>
+                                   <ViewDetailsModal />
                                 </td>
                                 <td className="py-4">
-                                    <button className="flex items-center gap-1.5 bg-green-50 hover:bg-green-100 text-green-600 text-xs font-medium px-3 py-1.5 rounded-full border border-green-100 transition-colors">
+                                    <button className="flex items-center gap-1.5 bg-[#E0FFE4] hover:bg-green-100 text-xs font-medium px-3 py-1.5 rounded-md border border-green-100 transition-colors">
                                         <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
                                         </svg>

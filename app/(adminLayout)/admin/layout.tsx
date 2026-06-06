@@ -39,7 +39,7 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
                             className="h-11 w-11 rounded-full object-cover"
                         />
                         <div className="leading-tight">
-                            <p className="text-md font-semibold text-gray-700">Moni Roy</p>
+                            <p className="text-md font-semibold text-gray-700">Mr Admin</p>
                             <p className="text-sm text-gray-500">Super Admin</p>
                         </div>
                         <button
