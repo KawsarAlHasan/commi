@@ -164,6 +164,15 @@ const employees = [
 
 const PAGE_SIZE = 10;
 
+function getInitials(name: string) {
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .toUpperCase()
+    .slice(0, 2);
+}
+
 export default function EmployeeTable() {
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState("");
@@ -172,7 +181,6 @@ export default function EmployeeTable() {
   const filtered = employees.filter((e) =>
     e.name.toLowerCase().includes(query.toLowerCase()),
   );
-
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
   const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
@@ -180,16 +188,15 @@ export default function EmployeeTable() {
     setQuery(search);
     setPage(1);
   };
-
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") handleSearch();
   };
 
   return (
     <div className="w-full">
-      <div className="bg-white rounded-2xl shadow-sm w-full p-6">
+      <div className="bg-white rounded-2xl shadow-sm w-full p-4 md:p-6">
         {/* Search Bar */}
-        <div className="flex items-center gap-4 mb-6">
+        <div className="flex items-center gap-3 mb-6">
           <div className="flex-1 bg-gray-100 rounded-lg px-4 py-2.5">
             <input
               type="text"
@@ -202,60 +209,114 @@ export default function EmployeeTable() {
           </div>
           <button
             onClick={handleSearch}
-            className="bg-[#FF6041] hover:bg-orange-600 text-white text-sm font-semibold px-6 py-2.5 rounded-md transition"
+            className="bg-[#FF6041] hover:bg-orange-600 text-white text-sm font-semibold px-5 py-2.5 rounded-md transition shrink-0"
           >
             Search
           </button>
         </div>
 
-        {/* Table */}
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="text-left text-gray-800 font-semibold border-b border-gray-200">
-              <th className="pb-3 pr-4">Full Name</th>
-              <th className="pb-3 pr-4">Designation</th>
-              <th className="pb-3 pr-4">Address</th>
-              <th className="pb-3 pr-4">Current Employee</th>
-              <th className="pb-3 pr-4">Profile</th>
-              <th className="pb-3">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {paginated.length === 0 ? (
-              <tr>
-                <td colSpan={6} className="text-center text-gray-400 py-10">
-                  No results found.
-                </td>
+        {/* ── Desktop Table ── */}
+        <div className="hidden md:block">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="text-left text-gray-800 font-semibold border-b border-gray-200">
+                <th className="pb-3 pr-4">Full Name</th>
+                <th className="pb-3 pr-4">Designation</th>
+                <th className="pb-3 pr-4">Address</th>
+                <th className="pb-3 pr-4">Current Employee</th>
+                <th className="pb-3 pr-4">Profile</th>
+                <th className="pb-3">Action</th>
               </tr>
-            ) : (
-              paginated.map((emp) => (
-                <tr
-                  key={emp.id}
-                  className="border-b border-gray-100 last:border-0"
-                >
-                  <td className="py-3.5 pr-4 text-gray-700">{emp.name}</td>
-                  <td className="py-3.5 pr-4 text-gray-500">
-                    {emp.designation}
-                  </td>
-                  <td className="py-3.5 pr-4 text-gray-500">{emp.address}</td>
-                  <td className="py-3.5 pr-4 text-gray-500">{emp.employer}</td>
-                  <td className="py-3.5 pr-4">
-                    <ViewDetailsModal />
-                  </td>
-                  <td className="py-3.5">
-                    <button className="cursor-pointer inline-flex items-center gap-2 bg-[#E0FFE4] text-gray-800 text-xs font-medium px-3 py-1.5 rounded-md hover:bg-green-200 transition">
-                      Save to Talent Pool
-                      <ArrowRight />
-                    </button>
+            </thead>
+            <tbody>
+              {paginated.length === 0 ? (
+                <tr>
+                  <td colSpan={6} className="text-center text-gray-400 py-10">
+                    No results found.
                   </td>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
+              ) : (
+                paginated.map((emp) => (
+                  <tr
+                    key={emp.id}
+                    className="border-b border-gray-100 last:border-0"
+                  >
+                    <td className="py-3.5 pr-4 text-gray-700">{emp.name}</td>
+                    <td className="py-3.5 pr-4 text-gray-500">
+                      {emp.designation}
+                    </td>
+                    <td className="py-3.5 pr-4 text-gray-500">{emp.address}</td>
+                    <td className="py-3.5 pr-4 text-gray-500">
+                      {emp.employer}
+                    </td>
+                    <td className="py-3.5 pr-4">
+                      <ViewDetailsModal />
+                    </td>
+                    <td className="py-3.5">
+                      <button className="cursor-pointer inline-flex items-center gap-2 bg-[#E0FFE4] text-gray-800 text-xs font-medium px-3 py-1.5 rounded-md hover:bg-green-200 transition">
+                        Save to Talent Pool <ArrowRight />
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+
+        {/* ── Mobile Card List ── */}
+        <div className="flex flex-col gap-3 md:hidden">
+          {paginated.length === 0 ? (
+            <p className="text-center text-gray-400 py-10">No results found.</p>
+          ) : (
+            paginated.map((emp) => (
+              <div
+                key={emp.id}
+                className="rounded-xl border border-gray-100 bg-gray-50 p-4"
+              >
+                {/* Card Header */}
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#f59f84] to-[#8a5fe2] text-xs font-semibold text-white">
+                    {getInitials(emp.name)}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold text-gray-800 truncate">
+                      {emp.name}
+                    </p>
+                    <p className="text-xs text-gray-500 truncate">
+                      {emp.designation}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Card Details */}
+                <div className="space-y-1.5 mb-3">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-gray-400 font-medium">Address</span>
+                    <span className="text-gray-600">{emp.address}</span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-gray-400 font-medium">Employer</span>
+                    <span className="text-gray-600 text-right max-w-[60%] truncate">
+                      {emp.employer}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Card Actions */}
+                <div className="flex items-center gap-2 pt-3 border-t border-gray-200">
+                  <ViewDetailsModal />
+                  <button className="cursor-pointer flex-1 inline-flex items-center justify-center gap-2 bg-[#E0FFE4] text-gray-800 text-xs font-medium px-3 py-2 rounded-md hover:bg-green-200 transition">
+                    Save to Talent Pool <ArrowRight />
+                  </button>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
 
         {/* Pagination */}
-        <div className="flex justify-center items-center gap-2 mt-6">
+        <div className="flex flex-wrap justify-center items-center gap-2 mt-6">
           <button
             onClick={() => setPage((p) => Math.max(1, p - 1))}
             disabled={page === 1}
