@@ -44,7 +44,7 @@ export function ViewDetailsModal() {
           </button>
         </DialogTrigger>
 
-        <DialogContent className="sm:max-w-sm md:max-w-lg lg:max-w-xl">
+        <DialogContent className="sm:max-w-lg md:max-w-lg lg:max-w-xl">
           <DialogHeader>
             <DialogTitle>View Profile</DialogTitle>
           </DialogHeader>
@@ -52,7 +52,7 @@ export function ViewDetailsModal() {
           <Image
             src="/images/cv.png"
             alt="Moni Roy"
-            width={540}
+            width={640}
             height={540}
             className="h-full w-full border border-gray-200"
           />
