@@ -98,7 +98,6 @@ const settingsNavItems: {
 ];
 
 // ─── Desktop Sidebar Toggle Button ───────────────────────────────────────────
-// AdminLayout এর header এ import করে ব্যবহার করতে হবে
 export function SidebarToggleButton() {
   const { toggleSidebar } = useSidebar();
 

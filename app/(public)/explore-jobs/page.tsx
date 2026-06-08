@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 
 const jobs = [
   {
@@ -166,7 +166,7 @@ function JobCard({ job }: { job: (typeof jobs)[0] }) {
 }
 
 function page() {
-  const [activeTab, setActiveTab] = React.useState<"active" | "inactive">(
+  const [activeTab, setActiveTab] = useState<"active" | "inactive">(
     "active",
   );
 
